@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+             x:Class="JGDiplomskaNaloga.ConversationPage"
+             Title="ConversationPage"
+             BackgroundColor="{StaticResource Background}"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="True">
+    <VerticalStackLayout>
+        <Grid RowDefinitions="60,550,60,60">
+            
+            <Grid Grid.Row="0" HorizontalOptions="Center">
+                <ImageButton x:Name="StartRecordingPerson2" Clicked="StartRecordingPerson2_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="55" HeightRequest="55" CornerRadius="50" Margin="0,80,0,0" Padding="10" VerticalOptions="Center" HorizontalOptions="Center" Rotation="180" IsEnabled="True" Aspect="Center">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="Black"/>
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
+
+            <Grid Grid.Row="1" RowDefinitions="Auto,Auto" HorizontalOptions="Center">
+                <Border Margin="10,50,10,0" Stroke="White" StrokeThickness="2" Grid.Row="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,0,0" />
+                    </Border.StrokeShape>
+                    <Editor
+                    x:Name="Person2TextEditor"
+                    Placeholder="Press the microphone and start talking"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Start"
+                    HeightRequest="250"
+                    IsReadOnly="True"
+                    BackgroundColor="White"
+                    Rotation="180">
+                    </Editor>
+                </Border>
+                <Border Grid.Row="1" Margin="10,-1,10,0" Stroke="White" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,0,10,10" />
+                    </Border.StrokeShape>
+                    <Editor
+                    x:Name="Person1TextEditor"
+                    Placeholder="Pritisnite mikrofon in začnite govorit"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Start"
+                    IsReadOnly="True"
+                    HeightRequest="250"
+                    WidthRequest="350"/>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2" HorizontalOptions="Center">
+                <ImageButton x:Name="StartRecordingPerson1" Clicked="StartRecordingPerson1_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="55" HeightRequest="55" CornerRadius="50" Margin="0,50,0,0" Padding="10" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="Black"/>
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
+
+            <Grid Grid.Row="3" HorizontalOptions="Center" ColumnDefinitions="100,100">
+                
+            </Grid>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

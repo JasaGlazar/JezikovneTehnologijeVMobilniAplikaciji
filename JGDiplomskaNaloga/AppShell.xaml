@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="JGDiplomskaNaloga.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:JGDiplomskaNaloga"
+    xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+    Shell.FlyoutBehavior="Disabled"
+    Title="JGDiplomskaNaloga"
+    Shell.TabBarBackgroundColor="{StaticResource Background}"
+    Shell.TabBarForegroundColor="{StaticResource PrimaryDark}"
+    Shell.TabBarTitleColor="{StaticResource PrimaryDark}">
+
+    <TabBar>
+        <ShellContent
+            Title="Domov"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.House}" Color="Black"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+            Title="Pogovor"
+            ContentTemplate="{DataTemplate local:ConversationPage}"
+            Route="ConversationPage">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.UserGroup}" Color="Black"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent
+            Title="Shranjeni pogovori"
+            ContentTemplate="{DataTemplate local:SavedConversationsPage}"
+            Route="SavedConversationsPage">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Star}" Color="Black"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    
+    </TabBar>
+
+</Shell>
