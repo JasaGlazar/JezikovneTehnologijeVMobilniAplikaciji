@@ -100,7 +100,7 @@
             </Grid>
 
             <Grid Grid.Row="3" HorizontalOptions="Center">
-                <ImageButton x:Name="StartRecording" Clicked="StartRecording_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="55" HeightRequest="55" CornerRadius="50" Margin="0,80,0,0" Padding="10" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
+                <ImageButton x:Name="StartRecording" Clicked="StartRecording_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,80,0,0" Padding="10" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="Black"/>
                     </ImageButton.Source>

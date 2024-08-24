@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using UraniumUI;
 using CommunityToolkit.Maui;
+using Plugin.Maui.Audio;
 
 namespace JGDiplomskaNaloga
 {
@@ -20,6 +21,8 @@ namespace JGDiplomskaNaloga
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFontAwesomeIconFonts();
                 });
+            builder.Services.AddSingleton(AudioManager.Current);
+            builder.Services.AddTransient<MainPage>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
