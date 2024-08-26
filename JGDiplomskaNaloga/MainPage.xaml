@@ -69,7 +69,12 @@
                     HorizontalTextAlignment="Start"
                     VerticalTextAlignment="Start"
                     HeightRequest="250"
-                    BackgroundColor="White">
+                    BackgroundColor="White"
+                    TextChanged="InputTextEditor_TextChanged"
+                    IsReadOnly="True"
+                    FontSize="25"
+                    TextColor="Black"
+                    FontFamily="Roboto">
                     </Editor>
                 </Border>
                 <Border Grid.Row="1" Margin="10,-1,10,0" Stroke="White" StrokeThickness="0">
@@ -82,7 +87,10 @@
                     VerticalTextAlignment="Start"
                     IsReadOnly="True"
                     HeightRequest="250"
-                />
+                    FontSize="25"
+                    TextColor="Black"
+                    FontFamily="Roboto"
+                    />
                 </Border>
             </Grid>
             <Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, Auto" Margin="0,50,0,0" HorizontalOptions="Center">
@@ -100,9 +108,9 @@
             </Grid>
 
             <Grid Grid.Row="3" HorizontalOptions="Center">
-                <ImageButton x:Name="StartRecording" Clicked="StartRecording_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,80,0,0" Padding="10" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
+                    <ImageButton x:Name="StartRecording" Clicked="StartRecording_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,80,0,0" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
                     <ImageButton.Source>
-                        <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="Black"/>
+                        <FontImageSource x:Name="StartRecordingImage" FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="Black"/>
                     </ImageButton.Source>
                 </ImageButton>
             </Grid>

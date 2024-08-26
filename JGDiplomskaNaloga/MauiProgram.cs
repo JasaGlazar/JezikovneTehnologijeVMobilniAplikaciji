@@ -19,6 +19,7 @@ namespace JGDiplomskaNaloga
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Roboto-Regular.ttf", "Roboto");
                     fonts.AddFontAwesomeIconFonts();
                 });
             builder.Services.AddSingleton(AudioManager.Current);
