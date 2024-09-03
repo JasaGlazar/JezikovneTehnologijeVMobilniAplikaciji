@@ -13,20 +13,15 @@ namespace JGDiplomskaNaloga
         readonly IAudioManager _audioManager;
         readonly IAudioRecorder _audioRecorder;
         
-        private string _currentGlyph = FA.Solid.Microphone;
-
         private static readonly string apiUrlTranscription = "https://transcriber-hgyyhzqswq-ew.a.run.app/api/transcribe";
         private static readonly string apiUrlTranslation = "https://slovenetranslator-hgyyhzqswq-ew.a.run.app/api/translate";
 
         private static readonly string sourceLanguage = "sl"; // Slovenian
         private static readonly string targetLanguage = "en"; // English
 
-
-
         public MainPage(IAudioManager audioManager)
         {            
             InitializeComponent();
-
 
             this._audioManager = audioManager;
             this._audioRecorder = audioManager.CreateRecorder();
@@ -34,9 +29,9 @@ namespace JGDiplomskaNaloga
 
         private void SwapLanguages_Clicked(object sender, EventArgs e)
         {
-            string tmp = TranslateTo.Text;
-            TranslateTo.Text = TranslateFrom.Text;
-            TranslateFrom.Text = tmp;
+            ImageSource tmp = ImgTranslateTo.Source;
+            ImgTranslateTo.Source = ImgTranslateFrom.Source;
+            ImgTranslateFrom.Source = tmp;
         }
 
         private async void StartRecording_Clicked(object sender, EventArgs e)
@@ -46,7 +41,6 @@ namespace JGDiplomskaNaloga
 
             if (await Permissions.RequestAsync<Permissions.Microphone>() != PermissionStatus.Granted)
             {
-                //TODO: Userja opozori da nima vkloplenega mikrofona
                 await DisplayAlert("Opozorilo", "Aplikaciji omogočite uporabo mikforona", "OK");
                 await Permissions.RequestAsync<Permissions.Microphone>();
             }
@@ -54,29 +48,13 @@ namespace JGDiplomskaNaloga
             {
                 await _audioRecorder.StartAsync();
 
-                StartRecording.BackgroundColor = Color.FromRgb(red: 255, green: 0, blue: 0);
-                _currentGlyph = FA.Solid.Square;
-                StartRecordingImage.Glyph = _currentGlyph;
-                StartRecordingImage.Color = Color.FromRgb(red: 255, green: 255, blue: 255);
-
-
             }
             else
             {
                var recordedAudio = await _audioRecorder.StopAsync();
-
-                StartRecording.BackgroundColor = Color.FromArgb("#2796F2");
-                _currentGlyph = FA.Solid.Microphone;
-                StartRecordingImage.Glyph = _currentGlyph;
-                StartRecordingImage.Color = Color.FromRgb(red: 0, green: 0, blue: 0);
-
-                var audioStream = recordedAudio.GetAudioStream();
+               var audioStream = recordedAudio.GetAudioStream();
                 
                TranscribeRecordedAudio(audioStream);
-
-               var player = AudioManager.Current.CreatePlayer(recordedAudio.GetAudioStream());
-
-               //player.Play();
             }
         }
 
@@ -108,6 +86,7 @@ namespace JGDiplomskaNaloga
 
                                 InputTextEditor.Text = transcriptionText;
 
+                                TranslateTextInput(transcriptionText);
                             }
                             else
                             {
@@ -125,22 +104,15 @@ namespace JGDiplomskaNaloga
             }
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            StartRecordingImage.Glyph = FA.Solid.Microphone;
-        }
-
         private void InputTextEditor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string InputText = string.Empty;
+            //string InputText = string.Empty;
 
-            if (InputTextEditor.Text.Length != 0)
-            {
-                InputText = InputTextEditor.Text;
-                //TranslateTextInput(InputText);
-            }
+            //if (string.IsNullOrWhiteSpace(InputTextEditor.Text))
+            //{
+            //    InputText = InputTextEditor.Text;
+            //    TranslateTextInput(InputText);
+            //}
         }
 
 
@@ -190,6 +162,71 @@ namespace JGDiplomskaNaloga
             catch (Exception ex)
             {
                 Debug.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private async void TextToSpeechSlovenian_Clicked(object sender, EventArgs e)
+        {
+            Debug.WriteLine("TTS Button pressed");
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(InputTextEditor.Text))
+                {
+                    Debug.WriteLine("No text available for speech.");
+                    return;
+                }
+
+                IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
+
+                Locale slovenianLocale = locales.FirstOrDefault(locale => locale.Language.Equals("sl", StringComparison.OrdinalIgnoreCase) && locale.Country.Equals("SI", StringComparison.OrdinalIgnoreCase));
+
+                Debug.WriteLine($"Locale selected: {slovenianLocale.Language} - {slovenianLocale.Name}");
+
+                SpeechOptions options = new SpeechOptions
+                {
+                    Locale = slovenianLocale
+                };
+
+                await TextToSpeech.Default.SpeakAsync(InputTextEditor.Text, options);
+                Debug.WriteLine("Text-to-Speech completed.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error in TextToSpeech: {ex.Message}");
+            }
+        }
+
+        private async void TextToSpeechEnglish_Clicked(object sender, EventArgs e)
+        {
+            Debug.WriteLine("TTS Button pressed");
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(OutputEditor.Text))
+                {
+                    Debug.WriteLine("No text available for speech.");
+                    return;
+                }
+
+                IEnumerable<Locale> locales = await TextToSpeech.Default.GetLocalesAsync();
+
+                Locale englishLocale = locales.FirstOrDefault(locale => locale.Language.Equals("en", StringComparison.OrdinalIgnoreCase) && locale.Country.Equals("US", StringComparison.OrdinalIgnoreCase));
+
+                Debug.WriteLine($"Locale selected: {englishLocale.Language} - {englishLocale.Name}");
+
+                SpeechOptions options = new SpeechOptions
+                {
+                    Locale = englishLocale
+                };
+
+                await TextToSpeech.Default.SpeakAsync(OutputEditor.Text, options);
+                Debug.WriteLine("Text-to-Speech completed.");
+            }
+            catch (Exception ex)
+            {
+                // Catch any exceptions for debugging
+                Debug.WriteLine($"Error in TextToSpeech: {ex.Message}");
             }
         }
     }

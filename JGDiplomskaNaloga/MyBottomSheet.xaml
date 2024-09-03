@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JGDiplomskaNaloga.MyBottomSheet"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             Padding="16, 32"
+             BackgroundColor="White"
+             HasBackdrop="True"
+             HasHandle="True"
+             HandleColor="{StaticResource Primary}">
+    <VerticalStackLayout Margin="0,10,0,0">
+        <Image Source="conversation_icon.png" WidthRequest="100" HeightRequest="100"></Image>
+        <Label 
+            Text="Let's talk through the transaltor app! We will take turns talking and listneing to translations"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="Large"/>
+        <Line WidthRequest="320" HorizontalOptions="Center" Stroke="Black" X1="1" X2="350" Y1="0" Y2="0"></Line>
+        <Label 
+            Text="Pogovarjajva se prek aplikacije za prevajanje! Izmenično bova govorila in poslušala prevode"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="Large"/>
+    </VerticalStackLayout>
+</the49:BottomSheet>

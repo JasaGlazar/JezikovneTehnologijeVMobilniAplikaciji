@@ -28,15 +28,6 @@
                 <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.UserGroup}" Color="Black"/>
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent
-            Title="Shranjeni pogovori"
-            ContentTemplate="{DataTemplate local:SavedConversationsPage}"
-            Route="SavedConversationsPage">
-            <ShellContent.Icon>
-                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Star}" Color="Black"/>
-            </ShellContent.Icon>
-        </ShellContent>
-    
     </TabBar>
 
 </Shell>
