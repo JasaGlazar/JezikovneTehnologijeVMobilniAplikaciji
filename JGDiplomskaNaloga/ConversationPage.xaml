@@ -13,13 +13,13 @@
         <Grid RowDefinitions="60,550,60,60">
             
             <Grid Grid.Row="0">
-                <ImageButton x:Name="TextToSpeechPerson2" Clicked="TextToSpeechPerson2_Clicked" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Start" Margin="20,50,0,0" Rotation="180" BackgroundColor="{StaticResource Primary}" CornerRadius="30" Aspect="Center">
+                <ImageButton x:Name="TextToSpeechPerson2" Command="{Binding Person2TTSBtn}" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Start" Margin="20,50,0,0" Rotation="180" BackgroundColor="{StaticResource Primary}" CornerRadius="30" Aspect="Center">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.VolumeHigh}" Color="{StaticResource PrimaryDark}"/>
                     </ImageButton.Source>
                 </ImageButton>
-                
-                <ImageButton x:Name="StartRecordingPerson2" Clicked="StartRecordingPerson2_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Rotation="180" IsEnabled="True" Aspect="Center">
+
+                <ImageButton x:Name="StartRecordingPerson2" Command="{Binding Person2StartRecordingBtn}" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Rotation="180" IsEnabled="True" Aspect="Center">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="White"/>
                     </ImageButton.Source>
@@ -34,6 +34,7 @@
                         <RoundRectangle CornerRadius="10,10,0,0" />
                     </Border.StrokeShape>
                     <Editor
+                    IsEnabled="False"
                     x:Name="Person2TextEditor"
                     Placeholder="Press the microphone and start talking"
                     HorizontalTextAlignment="Start"
@@ -42,7 +43,8 @@
                     Rotation="180"
                     FontSize="25"
                     TextColor="Black"
-                    FontFamily="Roboto">
+                    FontFamily="Roboto"
+                    Text="{Binding Person2Text}">
                     </Editor>
                 </Border>
                 <Border Grid.Row="1" Margin="10,-1,10,0" Stroke="White" StrokeThickness="0">
@@ -50,6 +52,7 @@
                         <RoundRectangle CornerRadius="0,0,10,10" />
                     </Border.StrokeShape>
                     <Editor
+                    IsEnabled="False"    
                     x:Name="Person1TextEditor"
                     Placeholder="Pritisnite mikrofon in začnite govoriti"
                     HorizontalTextAlignment="Start"
@@ -58,20 +61,21 @@
                     WidthRequest="350"
                     FontSize="25"
                     TextColor="Black"
-                    FontFamily="Roboto"/>
+                    FontFamily="Roboto"
+                    Text="{Binding Person1Text}"/>
                 </Border>
             </Grid>
 
             <Grid Grid.Row="2">
                 <Image Source="slovenia.png" HeightRequest="40" WidthRequest="40" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Start" Margin="20,20,0,0"/>
 
-                <ImageButton x:Name="StartRecordingPerson1" Clicked="StartRecordingPerson1_Clicked" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,20,0,0" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
+                <ImageButton x:Name="StartRecordingPerson1" Command="{Binding Person1StartRecordingBtn}" BackgroundColor="{StaticResource PrimaryDark}" WidthRequest="70" HeightRequest="70" CornerRadius="50" Margin="0,20,0,0" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="True" Aspect="Center">
                     <ImageButton.Source>
                         <FontImageSource x:Name="StartRecordingPerson1Image" FontFamily="FASolid" Glyph="{x:Static fa:Solid.Microphone}" Color="White"/>
                     </ImageButton.Source>
                 </ImageButton>
 
-                <ImageButton x:Name="TextToSpeechPerson1" Clicked="TextToSpeechPerson1_Clicked" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="End" IsEnabled="True" Margin="0,20,20,0" BackgroundColor="{StaticResource Primary}" CornerRadius="30" Aspect="Center">
+                <ImageButton x:Name="TextToSpeechPerson1" Command="{Binding Person1TTSBtn}" WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="End" IsEnabled="True" Margin="0,20,20,0" BackgroundColor="{StaticResource Primary}" CornerRadius="30" Aspect="Center">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.VolumeHigh}" Color="{StaticResource PrimaryDark}"/>
                     </ImageButton.Source>
